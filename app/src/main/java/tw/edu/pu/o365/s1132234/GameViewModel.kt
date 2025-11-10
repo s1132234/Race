@@ -21,10 +21,14 @@ class GameViewModel: ViewModel() {
     var circleX by mutableStateOf(0f)
     var circleY by mutableStateOf(0f)
 
+    var score by mutableStateOf(0)
+        private set
+
     fun SetGameSize(w: Float, h: Float) {
         screenWidthPx = w
         screenHeightPx = h
     }
+
     fun StartGame() {
         circleX = 100f
         circleY = screenHeightPx - 100f
@@ -34,8 +38,10 @@ class GameViewModel: ViewModel() {
                 delay(100)
                 circleX += 10
 
+                // 當圓形碰到右邊邊界時
                 if (circleX >= screenWidthPx - 100){
-                    circleX = 100f
+                    circleX = 100f // 圓形重置回左邊
+                    score++        // 【邏輯新增】分數 + 1
                 }
             }
         }
@@ -45,8 +51,4 @@ class GameViewModel: ViewModel() {
         circleX += x
         circleY += y
     }
-
-
-
-
 }

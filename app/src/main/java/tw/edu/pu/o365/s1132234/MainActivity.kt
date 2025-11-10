@@ -23,24 +23,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        // 設定為橫向螢幕
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
 
+        // 隱藏狀態列和導航列，實現全螢幕
         val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
         windowInsetsController.hide(WindowInsetsCompat.Type.statusBars())
-
         windowInsetsController.hide(WindowInsetsCompat.Type.navigationBars())
-
         WindowCompat.setDecorFitsSystemWindows(
             window, false)
 
+        // 計算螢幕尺寸
         val windowMetricsCalculator =
             WindowMetricsCalculator.getOrCreate()
-
         val currentWindowMetrics=
             windowMetricsCalculator.computeCurrentWindowMetrics(this)
-
         val bounds = currentWindowMetrics.bounds
-
         val screenWidthPx = bounds.width().toFloat()
         val screenHeightPx = bounds.height().toFloat()
 
