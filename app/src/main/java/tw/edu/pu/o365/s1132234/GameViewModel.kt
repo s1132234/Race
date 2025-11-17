@@ -21,7 +21,8 @@ class GameViewModel: ViewModel() {
     var circleX by mutableStateOf(0f)
     var circleY by mutableStateOf(0f)
 
-    val horse = Horse()
+    //val horse = Horse()
+    val horses = mutableListOf<Horse>()
 
     var score by mutableStateOf(0)
         private set
@@ -29,6 +30,9 @@ class GameViewModel: ViewModel() {
     fun SetGameSize(w: Float, h: Float) {
         screenWidthPx = w
         screenHeightPx = h
+        for (i in 0..2){
+            horses.add(Horse(i))
+        }
     }
 
     fun StartGame() {
@@ -46,9 +50,12 @@ class GameViewModel: ViewModel() {
                     score++        // 【邏輯新增】分數 + 1
                 }
 
-                horse.Run()
-                if (horse.HorseX >= screenWidthPx - 300){
-                    horse.HorseX = 0
+                for (i in 0..2){
+                    horses[i].Run()
+                    if (horses[i].HorseX >= screenWidthPx - 300){
+                        horses[i].HorseX = 0
+                    }
+
                 }
             }
         }
