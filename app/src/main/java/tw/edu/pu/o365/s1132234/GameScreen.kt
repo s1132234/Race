@@ -12,11 +12,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun GameScreen(message: String, gameViewModel: GameViewModel) {
+
+    val imageBitmap = ImageBitmap.imageResource(R.drawable.horse0)
+
     Box(modifier = Modifier
         .fillMaxSize()
         .background(Color.Yellow)
@@ -33,6 +40,11 @@ fun GameScreen(message: String, gameViewModel: GameViewModel) {
                 color = Color.Red,
                 radius = 100f,
                 center = Offset(gameViewModel.circleX, gameViewModel.circleY)
+            )
+            drawImage(
+                image = imageBitmap,
+                dstOffset = IntOffset(0, 100),
+                dstSize = IntSize(300, 300)
             )
         }
 
