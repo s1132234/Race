@@ -18,6 +18,8 @@ import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun GameScreen(message: String, gameViewModel: GameViewModel) {
@@ -62,9 +64,16 @@ fun GameScreen(message: String, gameViewModel: GameViewModel) {
                     + "\n分數: " + gameViewModel.score.toString()
             )
 
+            if (gameViewModel.winnerMessage.isNotEmpty()) {
+                Text(
+                    text = gameViewModel.winnerMessage,
+                    style = TextStyle(color = Color.Blue, fontSize = 50.sp)
+                )
+            }
+
             Button(
                 onClick = {
-                    gameViewModel.gameRunning = true
+                    //gameViewModel.gameRunning = true
                     gameViewModel.StartGame()
                 }
             ){
