@@ -22,7 +22,12 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun GameScreen(message: String, gameViewModel: GameViewModel) {
 
-    val imageBitmap = ImageBitmap.imageResource(R.drawable.horse0)
+    val imageBitmaps = listOf(
+        ImageBitmap.imageResource(R.drawable.horse0),
+        ImageBitmap.imageResource(R.drawable.horse1),
+        ImageBitmap.imageResource(R.drawable.horse2),
+        ImageBitmap.imageResource(R.drawable.horse3)
+    )
 
     Box(modifier = Modifier
         .fillMaxSize()
@@ -42,8 +47,8 @@ fun GameScreen(message: String, gameViewModel: GameViewModel) {
                 center = Offset(gameViewModel.circleX, gameViewModel.circleY)
             )
             drawImage(
-                image = imageBitmap,
-                dstOffset = IntOffset(0, 100),
+                image = imageBitmaps[gameViewModel.horse.HorseNo],
+                dstOffset = IntOffset(gameViewModel.horse.HorseX, gameViewModel.horse.HorseY),
                 dstSize = IntSize(300, 300)
             )
         }
